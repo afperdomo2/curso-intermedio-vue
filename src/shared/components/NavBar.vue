@@ -1,14 +1,26 @@
 <template>
   <nav>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-    <span>Composition App</span>
+    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="50" height="50" />
+    <span>{{ title }}</span>
 
-    <RouterLink to="/">Home</RouterLink>
-    <RouterLink to="/about">About</RouterLink>
+    <RouterLink v-for="(link, i) in links" :key="i" :to="link.path">
+      {{ link.title }}
+    </RouterLink>
   </nav>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import type { RouterLink } from '@/router/link-routes'
+
+interface Props {
+  title?: string
+  links: RouterLink[]
+}
+
+withDefaults(defineProps<Props>(), {
+  title: 'Composition App',
+})
+</script>
 
 <style scoped>
 .logo {
