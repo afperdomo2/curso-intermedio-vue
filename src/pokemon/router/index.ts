@@ -9,14 +9,20 @@ export const pokemonRoute: RouteRecordRaw = {
   children: [
     {
       path: `/${ROUTE_NAME}/list`,
+      name: 'pokemon-list',
+      props: { title: 'Pokémon List' },
       component: () => import('@/pokemon/views/PokemonList.vue'),
     },
     {
       path: `/${ROUTE_NAME}/by/:id`,
+      name: 'pokemon-by-id',
+      props: { title: 'Pokémon By ID' },
       component: () => import('@/pokemon/views/PokemonById.vue'),
     },
     {
       path: `/${ROUTE_NAME}/search`,
+      name: 'pokemon-search',
+      props: { title: 'Pokémon Search' },
       component: () => import('@/pokemon/views/PokemonSearch.vue'),
     },
   ],
