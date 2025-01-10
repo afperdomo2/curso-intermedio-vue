@@ -1,7 +1,9 @@
 <template>
   <nav>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="50" height="50" />
-    <span>{{ title }}</span>
+    <template v-if="!isSecondary">
+      <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="50" height="50" />
+      <span>{{ title }}</span>
+    </template>
 
     <RouterLink v-for="(link, i) in links" :key="i" :to="link.path">
       {{ link.title }}
@@ -15,10 +17,12 @@ import type { RouterLink } from '@/router/link-routes'
 interface Props {
   title?: string
   links: RouterLink[]
+  isSecondary?: boolean
 }
 
 withDefaults(defineProps<Props>(), {
   title: 'Composition App',
+  isSecondary: false,
 })
 </script>
 
@@ -35,7 +39,7 @@ nav {
   margin-top: 2rem;
 }
 
-nav a.router-link-exact-active {
+nav a.router-link-active {
   color: var(--color-text);
 }
 
