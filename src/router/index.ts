@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
+
+import { pokemonRoute } from '@/pokemon/router'
 import AboutView from '../shared/views/AboutView.vue'
 import HomeView from '../shared/views/HomeView.vue'
 
@@ -7,6 +9,7 @@ const router = createRouter({
   routes: [
     { path: '/', name: 'home', component: HomeView },
     { path: '/about', name: 'about', component: AboutView },
+    { ...pokemonRoute, path: '/pokemon' },
     { path: '/:pathMatch(.*)*', redirect: { name: 'home' } },
   ],
 })

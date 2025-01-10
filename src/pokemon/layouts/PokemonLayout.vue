@@ -1,7 +1,8 @@
 <template>
   <div>
     <h1>Pokemon Layout</h1>
-    <router-view />
+
+    <RouterView />
   </div>
 </template>
 
