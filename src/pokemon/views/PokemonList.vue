@@ -8,17 +8,12 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 
-import pokemonApi from '../api/pokemon.api'
-import type { PokemonListResponse } from '../interfaces/pokemon-list-reponse.interface'
+import { getPokemon } from '../helpers/get-pokemon.helper'
+import type { Pokemon } from '../interfaces/pokemon.interface'
 
-const pokemonList = ref<any[]>([])
+const pokemonList = ref<Pokemon[]>([])
 
 onMounted(async () => {
-  pokemonList.value = await fetchPokemon()
+  pokemonList.value = await getPokemon()
 })
-
-const fetchPokemon = async () => {
-  const response = await pokemonApi.get<PokemonListResponse>('/pokemon?limit=20')
-  return response.data.results
-}
 </script>
