@@ -5,8 +5,6 @@
     <h4>Pokemon Layout</h4>
 
     <RouterView />
-
-    <pre>links: {{ links }}</pre>
   </div>
 </template>
 
