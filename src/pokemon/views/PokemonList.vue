@@ -1,19 +1,19 @@
 <template>
   <div>
-    <h1>Pokemon List</h1>
-    <pre>{{ pokemonList }}</pre>
+    <h1>Pokemon List ({{ count }})</h1>
+
+    <h3 v-if="isLoading">Loading...</h3>
+
+    <ul v-else>
+      <li v-for="pokemon in pokemonList" :key="pokemon.id">
+        {{ pokemon.name }}
+      </li>
+    </ul>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { usePokemon } from '../composables/usePokemon'
 
-import { getPokemon } from '../helpers/get-pokemon.helper'
-import type { Pokemon } from '../interfaces/pokemon.interface'
-
-const pokemonList = ref<Pokemon[]>([])
-
-onMounted(async () => {
-  pokemonList.value = await getPokemon()
-})
+const { pokemonList, isLoading, count } = usePokemon()
 </script>

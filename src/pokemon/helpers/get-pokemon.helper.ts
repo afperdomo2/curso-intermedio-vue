@@ -2,8 +2,10 @@ import pokemonApi from '../api/pokemon.api'
 import type { PokemonListResponse } from '../interfaces/pokemon-list-reponse.interface'
 import type { PokemonResponse } from '../interfaces/pokemon-response.interface'
 import type { Pokemon } from '../interfaces/pokemon.interface'
+import { sleep } from './sleep.helper'
 
 export const getPokemon = async (): Promise<Pokemon[]> => {
+  await sleep(500)
   const { data } = await pokemonApi.get<PokemonListResponse>('/pokemon?limit=20')
 
   const pokemonPromises: Promise<Pokemon>[] = []
