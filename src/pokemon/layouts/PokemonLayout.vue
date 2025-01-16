@@ -2,8 +2,6 @@
   <NavBar :links="links" :is-secondary="true" />
 
   <div>
-    <h4>Pokemon Layout</h4>
-
     <RouterView />
   </div>
 </template>
