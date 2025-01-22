@@ -1,3 +1,4 @@
+import { getPokemon } from '@/pokemon/helpers/get-pokemon.helper'
 import type { Pokemon } from '@/pokemon/interfaces/pokemon.interface'
 import { reactive } from 'vue'
 
@@ -11,8 +12,8 @@ interface Store {
     errorMessage?: string
   }
   // Actions
-  startLoadingPokemonList: () => void
-  loadedPokemonList: (data: Pokemon[]) => void
+  startLoadingPokemonList: () => Promise<void>
+  loadPokemonList: (data: Pokemon[]) => void
   loadFailedPokemonList: (error: string) => void
 }
 
@@ -24,14 +25,26 @@ const store = reactive<Store>({
     hasError: false,
     errorMessage: undefined,
   },
-  startLoadingPokemonList: function (): void {
-    throw new Error('Function not implemented.')
+  startLoadingPokemonList: async function (): Promise<void> {
+    const pokemon = await getPokemon()
+    this.loadPokemonList(pokemon)
   },
-  loadedPokemonList: function (data: Pokemon[]): void {
-    throw new Error('Function not implemented.')
+  loadPokemonList: function (data: Pokemon[]): void {
+    this.pokemonList = {
+      data,
+      count: data.length,
+      isLoading: false,
+      hasError: false,
+      errorMessage: undefined,
+    }
   },
   loadFailedPokemonList: function (error: string): void {
-    throw new Error('Function not implemented.')
+    this.pokemonList = {
+      ...this.pokemonList,
+      isLoading: false,
+      hasError: true,
+      errorMessage: error,
+    }
   },
 })
 

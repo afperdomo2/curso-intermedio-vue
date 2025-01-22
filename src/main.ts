@@ -7,6 +7,10 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 
+import store from './stores/pokemon.store'
+
+store.startLoadingPokemonList()
+
 const app = createApp(App)
 
 VueQueryPlugin.install(app, {
