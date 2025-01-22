@@ -1,17 +1,24 @@
 <template>
-  <div class="pokemon-card">
+  <div class="pokemon-card" @click="goToPokemon">
     <img :src="pokemon.frontSprite" :alt="pokemon.name" />
     <h3>{{ pokemon.name }}</h3>
   </div>
 </template>
 
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
 import type { Pokemon } from '../interfaces/pokemon.interface'
+
+const router = useRouter()
 
 interface Props {
   pokemon: Pokemon
 }
-defineProps<Props>()
+const props = defineProps<Props>()
+
+const goToPokemon = () => {
+  router.push({ name: 'pokemon-by-id', params: { id: props.pokemon.id } })
+}
 </script>
 
 <style scoped>
