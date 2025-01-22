@@ -1,4 +1,3 @@
-import { getPokemon } from '@/pokemon/helpers/get-pokemon.helper'
 import type { Pokemon } from '@/pokemon/interfaces/pokemon.interface'
 import { reactive } from 'vue'
 
@@ -26,8 +25,12 @@ const store = reactive<Store>({
     errorMessage: undefined,
   },
   startLoadingPokemonList: async function (): Promise<void> {
-    const pokemon = await getPokemon()
-    this.loadPokemonList(pokemon)
+    this.pokemonList = {
+      ...this.pokemonList,
+      isLoading: true,
+      hasError: false,
+      errorMessage: undefined,
+    }
   },
   loadPokemonList: function (data: Pokemon[]): void {
     this.pokemonList = {
@@ -47,5 +50,7 @@ const store = reactive<Store>({
     }
   },
 })
+
+store.startLoadingPokemonList()
 
 export default store
