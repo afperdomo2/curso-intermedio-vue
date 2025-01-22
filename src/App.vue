@@ -4,10 +4,12 @@
   </header>
 
   <RouterView />
+  <VueQueryDevtools />
 </template>
 
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
+import { VueQueryDevtools } from '@tanstack/vue-query-devtools'
 
 import NavBar from '@/shared/components/NavBar.vue'
 import { routerLinks } from '@/router/link-routes'
