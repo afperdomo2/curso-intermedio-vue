@@ -9,6 +9,9 @@ export const getPokemon = async (): Promise<Pokemon[]> => {
   const { data } = await pokemonApi.get<PokemonListResponse>('/pokemon?limit=20')
 
   const pokemonPromises: Promise<Pokemon>[] = []
+  // if (1 === 1) {
+  //   throw new Error('This is an error')
+  // }
   for (const { url } of data.results) {
     const pokemonPromise = pokemonApi.get<PokemonResponse>(url).then(({ data }) => {
       const pokemon: Pokemon = {
