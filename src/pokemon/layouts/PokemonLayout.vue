@@ -15,10 +15,12 @@ import { pokemonRoute } from '../router'
 const links: RouterLink[] =
   pokemonRoute.children?.map((link) => {
     const { name, path, props } = link
+    const { title, visible } = props as { title: string; visible: boolean }
     return {
       name: name?.toString() ?? '',
-      title: (props as { title: string }).title,
+      title,
       path,
+      visible,
     }
   }) || []
 </script>

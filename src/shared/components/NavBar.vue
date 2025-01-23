@@ -13,6 +13,7 @@
 
 <script setup lang="ts">
 import type { RouterLink } from '@/router/link-routes'
+import { computed } from 'vue'
 
 interface Props {
   title?: string
@@ -20,10 +21,12 @@ interface Props {
   isSecondary?: boolean
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   title: 'Composition App',
   isSecondary: false,
 })
+
+const links = computed(() => props.links.filter((link) => link.visible))
 </script>
 
 <style scoped>
