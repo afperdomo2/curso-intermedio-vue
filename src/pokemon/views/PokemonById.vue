@@ -7,9 +7,9 @@
     <div class="character-container">
       <img :src="pokemon.frontSprite" :alt="pokemon.name" />
     </div>
-    <button @click="invalidatePokemonQuery">Invalidar querie del pokemon actual</button>
+    <button @click="invalidatePokemonQuery">Invalidar query del pokemon actual</button>
     <br /><br />
-    <button @click="invalidateAllQueries">Invalidar todos los queries</button>
+    <button @click="invalidateAllQueries">Invalidar todas las queries</button>
   </div>
 </template>
 

@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/vue-query'
 import { computed, watchEffect } from 'vue'
 
+import { initialPokemon } from '../data/initial-pokemon'
 import { getPokemon } from '../helpers/get-pokemon.helper'
 
 export const usePokemon = () => {
@@ -12,6 +13,7 @@ export const usePokemon = () => {
   } = useQuery({
     queryKey: ['pokemon-list'],
     queryFn: getPokemon,
+    initialData: initialPokemon,
     retry: 1,
     retryDelay: 1000,
   })
