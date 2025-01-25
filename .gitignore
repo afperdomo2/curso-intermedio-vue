@@ -28,3 +28,5 @@ coverage
 *.sw?
 
 *.tsbuildinfo
+
+/src/db/clients.db.json
