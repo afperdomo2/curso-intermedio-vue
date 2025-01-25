@@ -1,5 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
+import ClientsLayout from '@/clients-app/layouts/ClientsLayout.vue'
+import ClientPage from '@/clients-app/views/ClientPage.vue'
+import ListPage from '@/clients-app/views/ListPage.vue'
 import CounterApp from '@/counter-pinia/views/CounterView.vue'
 import { pokemonRoute } from '@/pokemon/router'
 import AboutView from '../shared/views/AboutView.vue'
@@ -13,6 +16,16 @@ const router = createRouter({
     { path: '/about', name: 'about', component: AboutView },
     { ...pokemonRoute, path: '/pokemon' },
     { path: '/:pathMatch(.*)*', redirect: { name: 'home' } },
+    {
+      path: '/clients',
+      name: 'clients',
+      component: ClientsLayout,
+      redirect: { name: 'client-list' },
+      children: [
+        { path: 'list', name: 'client-list', component: ListPage },
+        { path: ':id', name: 'client-by-id', component: ClientPage },
+      ],
+    },
   ],
 })
 
