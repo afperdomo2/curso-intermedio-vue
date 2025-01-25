@@ -38,6 +38,10 @@ npm run build
 npm run lint
 ```
 
+## Variables de entorno
+
+Crear el archivo de `.env`
+
 ## Backend - Json server
 
 Esto es necesario para el ejercicio de listar clientes para paginar con Pinia
