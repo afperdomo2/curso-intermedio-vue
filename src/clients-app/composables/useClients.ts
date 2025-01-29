@@ -13,6 +13,7 @@ const useClients = () => {
     queryFn: getClients,
     retry: 1,
     retryDelay: 1000,
+    staleTime: 1000 * 60, // 1 minute: Tiempo en el que los datos se consideran frescos
   })
   return {
     clients: data,
