@@ -5,9 +5,8 @@ import { computed, watch } from 'vue'
 import clientsApi from '../api/clients.api'
 import { useClientStore } from '../stores/client.store'
 
-const getClients = async () => {
-  console.log('Obteniendo clientes')
-  const { data } = await clientsApi.get('/clients?_page=1')
+const getClients = async (page: number) => {
+  const { data } = await clientsApi.get(`/clients?_page=${page}`)
   return data.data
 }
 
@@ -21,8 +20,8 @@ const useClientsAdapter = () => {
   const { clients, currentPage, totalpages } = storeToRefs(store)
 
   const { isLoading, data } = useQuery({
-    queryKey: ['clients?_page=', 1],
-    queryFn: getClients,
+    queryKey: ['clients?_page=', currentPage],
+    queryFn: () => getClients(currentPage.value),
     retry: 1,
     retryDelay: 1000,
   })
