@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/vue-query'
 import { storeToRefs } from 'pinia'
-import { computed, watch } from 'vue'
+import { watch } from 'vue'
 
+import { sleep } from '@/pokemon/helpers/sleep.helper'
 import clientsApi from '../api/clients.api'
 import { useClientStore } from '../stores/client.store'
-import { sleep } from '@/pokemon/helpers/sleep.helper'
 
 const getClients = async (page: number) => {
   await sleep(1500)
@@ -26,6 +26,7 @@ const useClientsAdapter = () => {
     queryFn: () => getClients(currentPage.value),
     retry: 1,
     retryDelay: 1000,
+    staleTime: 1000 * 10, // Tiempo en el que los datos se consideran frescos
   })
 
   watch(data, (clients) => {
@@ -36,17 +37,11 @@ const useClientsAdapter = () => {
 
   const setPage = (page: number) => store.setPage(page)
 
-  // [1, 2, 3, 4, 5]
-  const totalPageNumbers = computed(() => {
-    return Array.from({ length: totalpages.value }, (_, i) => i + 1)
-  })
-
   return {
     clients,
     currentPage,
     isLoading,
     totalpages,
-    totalPageNumbers,
 
     setPage,
   }

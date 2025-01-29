@@ -11,9 +11,13 @@
 </template>
 
 <script setup lang="ts">
-import useClientsAdapter from '../composables/useClientsAdapter'
+import type { Client } from '../interfaces/client.interface'
 
-const { clients } = useClientsAdapter()
+interface Props {
+  clients: Client[]
+}
+
+defineProps<Props>()
 </script>
 
 <style scoped></style>

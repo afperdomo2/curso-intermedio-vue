@@ -11,16 +11,29 @@
       {{ pageNumber }}
     </button>
 
-    <button :disabled="currentPage === totalpages" @click="setPage(currentPage + 1)">
+    <button :disabled="currentPage === totalPages" @click="setPage(currentPage + 1)">
       Siguiente
     </button>
   </div>
 </template>
 
 <script setup lang="ts">
-import useClientsAdapter from '../composables/useClientsAdapter'
+import { computed } from 'vue'
 
-const { currentPage, totalPageNumbers, totalpages, setPage } = useClientsAdapter()
+interface Props {
+  currentPage: number
+  totalPages: number
+}
+interface Emits {
+  (event: 'page-changed', page: number): void
+}
+
+const props = defineProps<Props>()
+const emits = defineEmits<Emits>()
+
+const totalPageNumbers = computed(() => Array.from({ length: props.totalPages }, (_, i) => i + 1))
+
+const setPage = (page: number) => emits('page-changed', page)
 </script>
 
 <style scoped>

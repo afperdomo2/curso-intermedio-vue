@@ -1,9 +1,13 @@
 <template>
   <LoadingModal v-if="isLoading" />
 
-  <ClientList />
+  <ClientList :clients="clients" />
 
-  <PaginationNumbers />
+  <PaginationNumbers
+    :current-page="currentPage"
+    :total-pages="totalpages"
+    @page-changed="setPage"
+  />
 </template>
 
 <script setup lang="ts">
@@ -12,7 +16,7 @@ import ClientList from '../components/ClientList.vue'
 import PaginationNumbers from '../components/PaginationNumbers.vue'
 import useClientsAdapter from '../composables/useClientsAdapter'
 
-const { isLoading } = useClientsAdapter()
+const { isLoading, clients, currentPage, totalpages, setPage } = useClientsAdapter()
 </script>
 
 <style scoped></style>
