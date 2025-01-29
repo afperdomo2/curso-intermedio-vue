@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/vue-query'
 import { storeToRefs } from 'pinia'
-import { watch } from 'vue'
+import { computed, watch } from 'vue'
 
 import clientsApi from '../api/clients.api'
 import { useClientStore } from '../stores/client.store'
@@ -18,7 +18,7 @@ const getClients = async () => {
  */
 const useClientsAdapter = () => {
   const store = useClientStore()
-  const { clients } = storeToRefs(store)
+  const { clients, currentPage, totalpages } = storeToRefs(store)
 
   const { isLoading, data } = useQuery({
     queryKey: ['clients?_page=', 1],
@@ -33,9 +33,21 @@ const useClientsAdapter = () => {
     }
   })
 
+  const setPage = (page: number) => store.setPage(page)
+
+  // [1, 2, 3, 4, 5]
+  const totalPageNumbers = computed(() => {
+    return Array.from({ length: totalpages.value }, (_, i) => i + 1)
+  })
+
   return {
     clients,
+    currentPage,
     isLoading,
+    totalpages,
+    totalPageNumbers,
+
+    setPage,
   }
 }
 
