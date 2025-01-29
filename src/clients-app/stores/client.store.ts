@@ -8,7 +8,6 @@ export const useClientStore = defineStore('client-store', () => {
   const clients = ref<Client[]>([])
 
   const setClients = (newClients: Client[]) => {
-    console.log('Nuevos clientes cargados ----->')
     clients.value = newClients
   }
 

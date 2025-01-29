@@ -46,6 +46,8 @@ Crear el archivo de `.env`
 
 Esto es necesario para el ejercicio de listar clientes para paginar con Pinia
 
+**NOTA:** Si hay problemas con algunos endpoints, se puede probar reiniciando el `json server`.
+
 ```sh
 npm run json-server-clients
 ```

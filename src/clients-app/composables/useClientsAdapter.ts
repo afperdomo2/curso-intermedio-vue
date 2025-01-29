@@ -2,12 +2,11 @@ import { useQuery } from '@tanstack/vue-query'
 import { storeToRefs } from 'pinia'
 import { watch } from 'vue'
 
-import { sleep } from '@/pokemon/helpers/sleep.helper'
 import clientsApi from '../api/clients.api'
 import { useClientStore } from '../stores/client.store'
 
 const getClients = async (page: number) => {
-  await sleep(1500)
+  // await sleep(1500)
   const { data } = await clientsApi.get(`/clients?_page=${page}`)
   return data.data
 }
