@@ -4,8 +4,10 @@ import { computed, watch } from 'vue'
 
 import clientsApi from '../api/clients.api'
 import { useClientStore } from '../stores/client.store'
+import { sleep } from '@/pokemon/helpers/sleep.helper'
 
 const getClients = async (page: number) => {
+  await sleep(1500)
   const { data } = await clientsApi.get(`/clients?_page=${page}`)
   return data.data
 }
@@ -24,6 +26,7 @@ const useClientsAdapter = () => {
     queryFn: () => getClients(currentPage.value),
     retry: 1,
     retryDelay: 1000,
+    staleTime: 1000 * 60, // 1 minute: Tiempo en el que los datos se consideran frescos
   })
 
   watch(data, (clients) => {

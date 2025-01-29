@@ -1,6 +1,4 @@
 <template>
-  <div>Client list</div>
-
   <ClientList />
 
   <PaginationNumbers />
