@@ -47,7 +47,7 @@ Crear el archivo de `.env`
 Esto es necesario para el ejercicio de listar clientes para paginar con Pinia
 
 ```sh
-npm run son-server-clients
+npm run json-server-clients
 ```
 
 [http://localhost:3009/clients](http://localhost:3009/clients)

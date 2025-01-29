@@ -1,8 +1,4 @@
 export interface Client {
-  clients: ClientElement[]
-}
-
-export interface ClientElement {
   id: number
   isActive: boolean
   picture: string

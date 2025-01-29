@@ -3,8 +3,8 @@ import { useQuery } from '@tanstack/vue-query'
 import clientsApi from '../api/clients.api'
 
 const getClients = async () => {
-  const { data } = await clientsApi.get('/clients?page_1')
-  return data
+  const { data } = await clientsApi.get('/clients?_page=1')
+  return data.data
 }
 
 const useClients = () => {
